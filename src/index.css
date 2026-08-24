@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+html,
+body,
+#root,
+.main-wrapper {
+  background-color: #070f1a;
+  font-family: 'Kanit', sans-serif;
+  color: #D7E2EA;
+}
+
+.main-wrapper {
+  overflow-x: clip;
+}
+
+.hero-heading {
+  background: linear-gradient(180deg, #FFFFFF 0%, #D7E2EA 30%, #8B98A5 65%, #464D56 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* HIGH-VISIBILITY 3D TEXT EXTRUSION */
+.hero-3d-text {
+  color: #FFFFFF;
+  text-shadow:
+    0px 1px 0px #B8C7D3,
+    1px 2px 0px #A0B1C0,
+    1px 3px 0px #889BAC,
+    2px 4px 0px #708598,
+    2px 5px 0px #586F84,
+    3px 6px 0px #405970,
+    3px 7px 0px #28435C,
+    4px 8px 0px #14283B,
+    4px 9px 15px rgba(0, 0, 0, 0.9),
+    0px 0px 30px rgba(187, 204, 215, 0.3);
+}
