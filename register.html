@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Shalom Tech Event 2026</title>
+    <meta name="description" content="Official Registration for Shalom Tech Event 2026. March 24–26, 2026.">
+    
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Outfit', 'sans-serif'],
+            },
+            colors: {
+              purple: {
+                300: '#D8B4FE',
+                400: '#C084FC',
+                500: '#A855F7',
+                600: '#9333EA',
+                700: '#7E22CE',
+                800: '#6B21A8',
+                900: '#581C87',
+                950: '#1E0538',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        body {
+            background-color: #0A0518;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        .tilt-card {
+            background: rgba(22, 11, 42, 0.9);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-[#0A0518] text-white relative selection:bg-purple-600/40 flex flex-col justify-between">
+
+    <!-- Ambient Dark Purple Glowing Orbs -->
+    <div class="fixed top-[-100px] left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-purple-800/30 blur-[160px] rounded-full pointer-events-none z-0"></div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 backdrop-blur-2xl bg-[#0A0518]/80 border-b border-purple-500/20">
+        <nav class="flex items-center justify-between px-6 md:px-12 py-4.5 w-full max-w-7xl mx-auto">
+            <a href="index.html" class="flex items-center gap-2.5 text-2xl font-black font-display tracking-tight text-white group">
+                <span class="w-3 h-3 rounded-full bg-purple-500 shadow-[0_0_15px_#a855f7]"></span>
+                <span class="text-purple-400">Shalom</span><span class="text-white">Tech.</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="text-xs font-bold uppercase tracking-wider text-purple-300 hover:text-purple-400 transition-colors flex items-center gap-2">
+                    ← Back to Main Event
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Registration Section -->
+    <main class="relative z-10 flex-grow flex items-center justify-center px-4 py-16">
+        <div class="w-full max-w-2xl p-8 md:p-12 rounded-3xl tilt-card shadow-2xl">
+            
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/40 bg-purple-950/60 text-purple-300 text-xs font-bold mb-4 shadow-[0_0_20px_rgba(126,34,206,0.3)]">
+                    ✨ Shalom Tech Event 2026 Registration
+                </div>
+                <h1 class="text-3xl md:text-5xl font-black font-display text-white tracking-tight mb-3">
+                    Register for <span class="text-purple-400">Shalom Tech.</span>
+                </h1>
+                <p class="text-purple-200 text-sm max-w-md mx-auto">
+                    Complete your registration for 3 days of flagship keynotes, workshops, and networking.
+                </p>
+            </div>
+
+            <!-- Form -->
+            <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-6">
+                <div>
+                    <label class="block text-xs font-bold text-purple-200 uppercase tracking-wider mb-2">Full Name *</label>
+                    <input 
+                        type="text" 
+                        required 
+                        placeholder="Alex Morgan"
+                        class="w-full px-4 py-3.5 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white placeholder-purple-400/60 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-sm"
+                    />
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-purple-200 uppercase tracking-wider mb-2">Work or Personal Email *</label>
+                    <input 
+                        type="email" 
+                        required 
+                        placeholder="alex@company.com"
+                        class="w-full px-4 py-3.5 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white placeholder-purple-400/60 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-sm"
+                    />
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-purple-200 uppercase tracking-wider mb-2">Company / Institution</label>
+                        <input 
+                            type="text" 
+                            placeholder="Shalom Tech Labs"
+                            class="w-full px-4 py-3.5 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white placeholder-purple-400/60 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-purple-200 uppercase tracking-wider mb-2">Primary Role</label>
+                        <select class="w-full px-4 py-3.5 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-sm">
+                            <option value="developer">Developer / Engineer</option>
+                            <option value="student">Student / Researcher</option>
+                            <option value="sponsor">Sponsor / Representative</option>
+                            <option value="speaker">Speaker / Leader</option>
+                            <option value="other">Tech Enthusiast</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-purple-200 uppercase tracking-wider mb-2">Registration Pass Type *</label>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <label class="cursor-pointer border border-purple-500 bg-purple-900/60 p-4 rounded-2xl flex flex-col items-center text-center hover:bg-purple-900/80 transition-all shadow-[0_0_20px_rgba(126,34,206,0.4)]">
+                            <input type="radio" name="passType" value="general" checked class="hidden" />
+                            <span class="text-xs font-bold text-white mb-0.5">General Pass</span>
+                            <span class="text-[10px] text-purple-300">3 Days Full Access</span>
+                        </label>
+                        <label class="cursor-pointer border border-purple-500/30 bg-purple-950/40 p-4 rounded-2xl flex flex-col items-center text-center hover:border-purple-500/60 transition-all">
+                            <input type="radio" name="passType" value="vip" class="hidden" />
+                            <span class="text-xs font-bold text-white mb-0.5">VIP All-Access</span>
+                            <span class="text-[10px] text-purple-300">VIP Lounge & Dinner</span>
+                        </label>
+                        <label class="cursor-pointer border border-purple-500/30 bg-purple-950/40 p-4 rounded-2xl flex flex-col items-center text-center hover:border-purple-500/60 transition-all">
+                            <input type="radio" name="passType" value="sponsor" class="hidden" />
+                            <span class="text-xs font-bold text-white mb-0.5">Sponsor Pass</span>
+                            <span class="text-[10px] text-purple-300">Exhibitor Booth</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-purple-200 uppercase tracking-wider mb-2">Special Requests or Comments</label>
+                    <textarea 
+                        rows="2" 
+                        placeholder="Tell us about any dietary requirements or sponsorship inquiries..."
+                        class="w-full px-4 py-3 rounded-xl bg-purple-950/60 border border-purple-500/30 text-white placeholder-purple-400/60 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-sm resize-none"
+                    ></textarea>
+                </div>
+
+                <button 
+                    type="submit"
+                    class="w-full py-4 px-6 text-sm font-bold uppercase tracking-wider text-white bg-purple-700 rounded-xl hover:bg-purple-600 shadow-[0_0_35px_rgba(126,34,206,0.6)] transition-all cursor-pointer mt-4 flex items-center justify-center gap-2"
+                >
+                    Complete Registration ✨
+                </button>
+            </form>
+
+            <!-- Success Overlay -->
+            <div id="successModal" class="hidden text-center py-10">
+                <div class="w-20 h-20 bg-purple-500/20 text-purple-400 border border-purple-500/50 rounded-full flex items-center justify-center text-3xl mx-auto mb-6 shadow-[0_0_30px_rgba(168,85,247,0.4)]">
+                    ✓
+                </div>
+                <h2 class="text-3xl font-bold font-display text-white mb-3">Registration Confirmed!</h2>
+                <p class="text-purple-200 text-sm max-w-md mx-auto mb-8 leading-relaxed">
+                    Thank you for registering for Shalom Tech Event 2026. Your official access pass details have been sent to your email address.
+                </p>
+                <a href="index.html" class="inline-flex items-center justify-center px-8 py-3.5 text-sm font-bold text-white bg-purple-700 rounded-full hover:bg-purple-600 transition-all shadow-[0_0_30px_rgba(126,34,206,0.6)]">
+                    Return to Main Event Page
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center text-purple-300 text-xs border-t border-purple-500/20 backdrop-blur-2xl bg-[#0A0518]/85 relative z-10">
+        © 2026 Shalom Tech Event. All rights reserved.
+    </footer>
+
+    <script>
+        function handleRegister(e) {
+            e.preventDefault();
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('successModal').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
