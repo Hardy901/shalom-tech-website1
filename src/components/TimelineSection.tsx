@@ -86,7 +86,7 @@ export const TimelineSection: React.FC = () => {
                   
                   {/* Left side (Empty on mobile, alternating on desktop) */}
                   <div className={`hidden md:block w-[45%] ${isEven ? 'text-right pr-12' : 'order-3 text-left pl-12'}`}>
-                    <FadeIn delay={0.2} direction={isEven ? 'left' : 'right'}>
+                    <FadeIn delay={0.2} x={isEven ? -40 : 40} y={0}>
                       {isEven ? (
                         <>
                           <h4 className="text-2xl font-black text-white uppercase tracking-wider mb-2">{item.title}</h4>
@@ -113,7 +113,7 @@ export const TimelineSection: React.FC = () => {
 
                   {/* Right side (Main content on mobile, alternating on desktop) */}
                   <div className={`w-full pl-20 md:pl-0 md:w-[45%] order-2 md:order-3 ${isEven ? 'md:text-left md:pl-12' : 'md:text-right md:pr-12'}`}>
-                    <FadeIn delay={0.2} direction={isEven ? 'right' : 'left'}>
+                    <FadeIn delay={0.2} x={isEven ? 40 : -40} y={0}>
                       {/* Mobile layout always shows time + title + desc here */}
                       <div className="md:hidden mb-2 text-[#B600A8] font-black text-2xl tracking-tighter">
                         {item.time}
