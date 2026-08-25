@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { HeroSection } from './components/HeroSection';
+import { ManifestoSection } from './components/ManifestoSection';
 import { MarqueeSection } from './components/MarqueeSection';
 import { AboutSection } from './components/AboutSection';
+import { TimelineSection } from './components/TimelineSection';
 import { ServicesSection } from './components/ServicesSection';
+import { FlyThroughSection } from './components/FlyThroughSection';
 import { ProjectsSection } from './components/ProjectsSection';
+import { FaqSection } from './components/FaqSection';
+import { CustomCursor } from './components/CustomCursor';
 import { X, Mail, Sparkles, Send } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -27,8 +32,17 @@ export const App: React.FC = () => {
 
   return (
     <div className="main-wrapper bg-[#070f1a] min-h-screen text-[#D7E2EA] overflow-x-clip selection:bg-[#B600A8] selection:text-white">
+      <div className="film-grain" />
+      <CustomCursor />
+      
+      {/* 0. INTRO SPACE TUNNEL */}
+      <FlyThroughSection />
+
       {/* 1. HERO SECTION */}
       <HeroSection onContactClick={handleContactClick} />
+
+      {/* 1.5. MANIFESTO SECTION */}
+      <ManifestoSection />
 
       {/* 2. MARQUEE SECTION */}
       <MarqueeSection />
@@ -36,11 +50,17 @@ export const App: React.FC = () => {
       {/* 3. ABOUT SECTION */}
       <AboutSection onContactClick={handleContactClick} />
 
+      {/* 3.5. TIMELINE SECTION */}
+      <TimelineSection />
+
       {/* 4. SERVICES SECTION */}
       <ServicesSection />
 
       {/* 5. PROJECTS SECTION */}
       <ProjectsSection />
+
+      {/* 6. FAQ SECTION */}
+      <FaqSection />
 
       {/* FOOTER */}
       <footer id="contact" className="bg-[#070f1a] border-t border-[#D7E2EA]/10 py-12 px-6 md:px-10 text-center">

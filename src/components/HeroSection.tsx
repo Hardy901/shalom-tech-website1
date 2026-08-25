@@ -1,57 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion';
-import { FadeIn } from './FadeIn';
+import React from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
-interface HeroSectionProps {
-  onContactClick?: () => void;
-}
-
-export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // 1. Scroll tracking for the intro animation sequence
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  // Map scroll progress (0 to 0.6) to frame numbers (1 to 60)
-  const frameIndex = useTransform(scrollYProgress, [0, 0.6], [1, 60]);
-  
-  const [currentFrame, setCurrentFrame] = useState(1);
-  const [introComplete, setIntroComplete] = useState(false);
-  const [lightsOn, setLightsOn] = useState(false);
-
-  useEffect(() => {
-    // Preload images
-    for (let i = 1; i <= 60; i++) {
-      const img = new Image();
-      img.src = `/robot_frames/robot_${i.toString().padStart(3, '0')}.webp`;
-    }
-
-    // Play animation automatically
-    let frame = 1;
-    const interval = setInterval(() => {
-      frame += 1;
-      if (frame <= 60) {
-        setCurrentFrame(frame);
-      }
-      
-      // Turn on lights just as the robot hits the switch (frame 55)
-      if (frame === 55) {
-        setLightsOn(true);
-      }
-
-      // Finish sequence at frame 60
-      if (frame >= 60) {
-        clearInterval(interval);
-        setTimeout(() => setIntroComplete(true), 500); // 500ms fade out buffer
-      }
-    }, 50); // 50ms per frame = 20 fps = exactly 3 seconds total intro
-
-    return () => clearInterval(interval);
-  }, []);
-
+export const HeroSection = ({ onContactClick }: { onContactClick: () => void }) => {
   // Mouse tracking for dynamic 3D perspective tilt
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -67,59 +17,49 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
   });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    const { clientX, clientY, currentTarget } = e;
+    const { width, height, left, top } = currentTarget.getBoundingClientRect();
+    
+    // Normalize mouse position between -0.5 and 0.5
+    const x = (clientX - left) / width - 0.5;
+    const y = (clientY - top) / height - 0.5;
+    
     mouseX.set(x);
     mouseY.set(y);
   };
 
   const handleMouseLeave = () => {
+    // Reset to center on leave
     mouseX.set(0);
     mouseY.set(0);
   };
 
-  const titleChars = "SHALOM TECH".split('');
+  const titleChars = "SHALOM TECH".split("");
 
   return (
     <section 
-      className="relative h-screen w-full bg-[#070f1a] overflow-hidden"
+      className="relative w-full h-screen overflow-hidden bg-[#070f1a] perspective-[2000px]"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      
-      {/* 1. Intro Robot Sequence (Plays once on load) */}
-      {!introComplete && (
-        <motion.div 
-          className="absolute inset-0 z-50 flex-col items-center justify-center bg-black"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: lightsOn ? 0 : 1 }}
-          transition={{ duration: 0.5 }}
-          style={{ display: 'flex' }}
-        >
-          <img 
-            src={`/robot_frames/robot_${currentFrame.toString().padStart(3, '0')}.webp`}
-            alt="Robot Sequence"
-            className="w-full h-full object-cover pointer-events-none"
-          />
-        </motion.div>
-      )}
-
-      {/* 2. Pitch Black Overlay (Fades out when lights turn on) */}
+      {/* Breathing Orb Background */}
       <motion.div 
-        className="absolute inset-0 bg-black z-40 pointer-events-none"
-        initial={{ opacity: 1 }}
-        animate={{ opacity: lightsOn ? 0 : 1 }}
-        transition={{ duration: 0.5 }}
+        className="absolute inset-0 pointer-events-none z-0"
+        style={{
+          background: 'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(182,0,168,0.15) 0%, transparent 68%)'
+        }}
+        animate={{
+          scale: [1, 1.08, 1],
+          opacity: [0.4, 0.8, 0.4]
+        }}
+        transition={{
+          duration: 6,
+          ease: "easeInOut",
+          repeat: Infinity
+        }}
       />
 
-      {/* 3. The Actual Hero Content */}
-      <motion.div 
-        className="absolute inset-0 w-full h-full flex flex-col justify-between bg-[#070f1a] select-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: lightsOn ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div className="absolute inset-0 w-full h-full flex flex-col justify-between z-10 select-none">
         {/* Navbar */}
         <div className="w-full z-20">
           <nav className="flex justify-between items-start px-6 md:px-10 pt-6 md:pt-8 w-full">
@@ -137,8 +77,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
           <div className="w-full max-w-full">
             <motion.div
               style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-              className="w-full perspective-1000 py-6 flex justify-center items-center pointer-events-auto"
+              className="w-full perspective-[1000px] py-6 flex justify-center items-center pointer-events-auto"
             >
+              {/* Central glowing effect behind the 3D text */}
               <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
                 <div className="w-[75vw] h-[25vw] bg-gradient-to-r from-[#B600A8]/20 via-cyan-400/20 to-indigo-900/20 blur-[100px] rounded-full animate-pulse" />
               </div>
@@ -148,7 +89,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
                   <motion.span
                     key={index}
                     initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: lightsOn ? 1 : 0, y: [0, -8, 0], rotateZ: [0, index % 2 === 0 ? 0.8 : -0.8, 0] }}
+                    animate={{ opacity: 1, y: [0, -8, 0], rotateZ: [0, index % 2 === 0 ? 0.8 : -0.8, 0] }}
                     transition={{
                       opacity: { duration: 0.6, delay: index * 0.04 },
                       y: { duration: 4, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut', delay: index * 0.12 },
@@ -176,9 +117,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
               Empowering young innovators to shape the future — boldly, ethically, and with purpose.
             </p>
           </div>
-          <div className="w-[120px] md:w-[160px]" />
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
