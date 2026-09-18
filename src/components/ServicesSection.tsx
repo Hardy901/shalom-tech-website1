@@ -21,27 +21,19 @@ const eventsData: EventItem[] = [
   },
   {
     number: '02',
-    name: 'Runway to the Future',
-    subtitle: 'Fashion Show',
-    meta: 'Classes: III-IV • 1 Student • Offline',
+    name: 'Frame Forge',
+    subtitle: '3D Poster Composition',
+    meta: 'Classes: VIII-IX   2 Students   Offline',
     description:
-      'Walk the ramp and present attire, accessories, and props that creatively reflect and connect to the technology theme. No replicating existing characters!',
+      'Create a 3D poster composition using 10-15 images provided to you on the spot, creatively reimagining them to design a unique and original poster.',
   },
   {
     number: '03',
-    name: 'Frame Forge',
-    subtitle: '3D Image Composition',
-    meta: 'Classes: VIII-IX • 2 Students • Offline',
-    description:
-      'Create an original 3D composition and poster by creatively reimagining 10-15 images given to you on the spot.',
-  },
-  {
-    number: '04',
     name: 'Web Weavers',
     subtitle: 'Website Design',
-    meta: 'Classes: X-XII • 2 Students • Offline',
+    meta: 'Classes: IX-XII   2 Students   Offline',
     description:
-      'Design and develop a responsive, original, and user-friendly website on a topic given on the spot. AI tools are permitted to a certain extent.',
+      'Design a responsive website using HTML, CSS, and JavaScript on the topics of Quick Commerce or Technology & Innovation. Participants must submit their source code prior to the event.',
   },
 ];
 

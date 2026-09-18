@@ -34,7 +34,7 @@ export const GlorySection: React.FC = () => {
   ];
 
   return (
-    <section ref={containerRef} className="relative h-[300vh] bg-[#070f1a]">
+    <section ref={containerRef} className="relative h-[300vh] bg-transparent">
       {/* Sticky container locks to screen while we scroll the 300vh height */}
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden" style={{ perspective: '1200px' }}>
         

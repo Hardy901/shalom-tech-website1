@@ -38,7 +38,7 @@ export const HeroSection = ({ onContactClick }: { onContactClick: () => void }) 
 
   return (
     <section 
-      className="relative w-full h-screen overflow-hidden bg-[#070f1a] perspective-[2000px]"
+      className="relative w-full h-screen overflow-hidden bg-transparent perspective-[2000px]"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >

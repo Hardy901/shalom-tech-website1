@@ -51,7 +51,7 @@ export const MarqueeSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#070f1a] pt-16 sm:pt-24 md:pt-32 pb-16 overflow-hidden relative"
+      className="bg-transparent pt-16 sm:pt-24 md:pt-32 pb-16 overflow-hidden relative"
     >
       {/* Decorative gradient blur in the center */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[200px] bg-[#B600A8]/10 blur-[100px] rounded-[100%] pointer-events-none" />

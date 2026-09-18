@@ -29,7 +29,7 @@ const AnimatedNumber: React.FC<AnimatedNumberProps> = ({ value }) => {
 
 export const StatsSection: React.FC = () => {
   return (
-    <section className="bg-[#070f1a] py-20 sm:py-32 relative overflow-hidden">
+    <section className="bg-transparent py-20 sm:py-32 relative overflow-hidden">
       {/* Decorative background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-64 bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
 

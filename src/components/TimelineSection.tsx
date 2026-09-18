@@ -1,43 +1,49 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FadeIn } from './FadeIn';
-import { Clock, MapPin, Zap, Coffee, Trophy, Mic } from 'lucide-react';
+import { Calendar, AlertCircle, Upload, CheckCircle, Code, Users, Trophy } from 'lucide-react';
 
 const schedule = [
   {
-    time: "08:30 AM",
-    title: "Registration & Welcome",
-    description: "Arrival of participants, team check-ins, and distribution of official Shalom Tech welcome kits and ID badges.",
-    icon: MapPin
+    time: "25th Sep",
+    title: "Registration Begins",
+    description: "Official portal opens for all participating schools and independent students to register for Shalom Tech events.",
+    icon: Calendar
   },
   {
-    time: "09:30 AM",
-    title: "Inauguration Ceremony",
-    description: "Official lighting of the lamp followed by an inspiring keynote address by our Chief Guest to kick off the technology summit.",
-    icon: Mic
+    time: "16th Oct",
+    title: "Last Date for Registration",
+    description: "Final deadline to submit your team rosters and secure your spot in the competition.",
+    icon: AlertCircle
   },
   {
-    time: "10:30 AM",
-    title: "Competitions Commence",
-    description: "All major events including Vision Makers, Runway to the Future, and Web Weavers officially begin in their designated arenas.",
-    icon: Zap
+    time: "22nd Oct",
+    title: "Vision Makers: Submission",
+    description: "Deadline to submit all initial 3D models and conceptual designs for the Vision Makers track.",
+    icon: Upload
   },
   {
-    time: "01:00 PM",
-    title: "Networking Lunch",
-    description: "A scheduled break for participants to recharge, enjoy a catered lunch, and network with peers from other schools.",
-    icon: Coffee
+    time: "26th Oct",
+    title: "Vision Makers: Round 1 Result",
+    description: "Announcement of the shortlisted candidates moving forward to the final offline event.",
+    icon: CheckCircle
   },
   {
-    time: "02:30 PM",
-    title: "Final Presentations & Judging",
-    description: "Teams pitch their final projects, prototypes, and designs to our panel of expert judges.",
-    icon: Clock
+    time: "27th Oct",
+    title: "Web Weavers: Submission",
+    description: "Deadline for submitting website designs and codebase repositories for the Web Weavers competition.",
+    icon: Code
   },
   {
-    time: "04:30 PM",
-    title: "Valedictory & Prize Distribution",
-    description: "Closing ceremony where winners are announced, and trophies, cash prizes, and certificates are awarded.",
+    time: "30th Oct",
+    title: "Offline Event",
+    description: "The main summit day! Live competitions, final presentations, and on-the-spot challenges.",
+    icon: Users
+  },
+  {
+    time: "30th Oct",
+    title: "Felicitation Ceremony",
+    description: "Valedictory function, winner announcements, and grand prize distribution.",
     icon: Trophy
   }
 ];
@@ -54,14 +60,14 @@ export const TimelineSection: React.FC = () => {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section ref={containerRef} className="py-24 sm:py-32 px-6 md:px-10 bg-[#070f1a] relative overflow-hidden">
+    <section id="timeline" ref={containerRef} className="py-24 sm:py-32 px-6 md:px-10 bg-transparent relative overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#B600A8]/5 blur-[150px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#00E5FF]/5 blur-[150px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <div className="text-center mb-20 sm:mb-28">
-            <h2 className="text-[#B600A8] font-black tracking-widest uppercase text-sm sm:text-base mb-2">Event Flow</h2>
+            <h2 className="text-[#D7E2EA]/80 font-black tracking-widest uppercase text-sm sm:text-base mb-2">Event Flow</h2>
             <h3 className="hero-heading font-black text-4xl sm:text-5xl md:text-6xl uppercase tracking-tighter">The Schedule</h3>
           </div>
         </FadeIn>
@@ -70,9 +76,9 @@ export const TimelineSection: React.FC = () => {
           {/* Center glowing line (background) */}
           <div className="absolute left-[24px] md:left-1/2 top-0 bottom-0 w-1 bg-[#D7E2EA]/5 md:-translate-x-1/2 rounded-full" />
           
-          {/* Center glowing line (active progress) */}
+          {/* Center line (active progress) */}
           <motion.div 
-            className="absolute left-[24px] md:left-1/2 top-0 w-1 bg-gradient-to-b from-[#B600A8] to-cyan-400 md:-translate-x-1/2 rounded-full shadow-[0_0_15px_rgba(182,0,168,0.5)] origin-top"
+            className="absolute left-[24px] md:left-1/2 top-0 w-1 bg-gradient-to-b from-white/30 to-transparent md:-translate-x-1/2 rounded-full origin-top"
             style={{ height: lineHeight }}
           />
 
@@ -93,7 +99,7 @@ export const TimelineSection: React.FC = () => {
                           <p className="text-[#D7E2EA]/60 text-sm">{item.description}</p>
                         </>
                       ) : (
-                        <div className="text-[#B600A8] font-black text-4xl sm:text-5xl tracking-tighter">
+                        <div className="text-[#D7E2EA]/80 font-black text-4xl sm:text-5xl tracking-tighter">
                           {item.time}
                         </div>
                       )}
@@ -101,13 +107,13 @@ export const TimelineSection: React.FC = () => {
                   </div>
 
                   {/* Center Node */}
-                  <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-[#070f1a] border-4 border-[#0a1526] z-10 flex items-center justify-center shadow-[0_0_20px_rgba(182,0,168,0.2)] order-1 md:order-2">
+                  <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-[#0a1526] border border-white/10 z-10 flex items-center justify-center order-1 md:order-2">
                     <motion.div 
-                      className="w-full h-full rounded-full bg-gradient-to-br from-[#B600A8] to-cyan-600 flex items-center justify-center"
+                      className="w-full h-full rounded-full bg-gradient-to-br from-[#1A2536] to-[#0D1520] flex items-center justify-center"
                       whileHover={{ scale: 1.2, rotate: 360 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <Icon className="w-5 h-5 text-white" />
+                      <Icon className="w-5 h-5 text-[#D7E2EA]/70" />
                     </motion.div>
                   </div>
 
@@ -115,12 +121,12 @@ export const TimelineSection: React.FC = () => {
                   <div className={`w-full pl-20 md:pl-0 md:w-[45%] order-2 md:order-3 ${isEven ? 'md:text-left md:pl-12' : 'md:text-right md:pr-12'}`}>
                     <FadeIn delay={0.2} x={isEven ? 40 : -40} y={0}>
                       {/* Mobile layout always shows time + title + desc here */}
-                      <div className="md:hidden mb-2 text-[#B600A8] font-black text-2xl tracking-tighter">
+                      <div className="md:hidden mb-2 text-[#D7E2EA]/80 font-black text-2xl tracking-tighter">
                         {item.time}
                       </div>
                       
                       {isEven ? (
-                        <div className="hidden md:block text-[#B600A8] font-black text-4xl sm:text-5xl tracking-tighter">
+                        <div className="hidden md:block text-[#D7E2EA]/80 font-black text-4xl sm:text-5xl tracking-tighter">
                           {item.time}
                         </div>
                       ) : (

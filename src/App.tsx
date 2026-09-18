@@ -7,8 +7,11 @@ import { TimelineSection } from './components/TimelineSection';
 import { ServicesSection } from './components/ServicesSection';
 import { FlyThroughSection } from './components/FlyThroughSection';
 import { ProjectsSection } from './components/ProjectsSection';
+import { FacultySection } from './components/FacultySection';
 import { FaqSection } from './components/FaqSection';
+import { FooterSection } from './components/FooterSection';
 import { CustomCursor } from './components/CustomCursor';
+import { Navbar } from './components/Navbar';
 import { X, Mail, Sparkles, Send } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -38,6 +41,9 @@ export const App: React.FC = () => {
       {/* 0. INTRO SPACE TUNNEL */}
       <FlyThroughSection />
 
+      {/* NAVBAR (Sticks to top after intro) */}
+      <Navbar />
+
       {/* 1. HERO SECTION */}
       <HeroSection onContactClick={handleContactClick} />
 
@@ -59,30 +65,14 @@ export const App: React.FC = () => {
       {/* 5. PROJECTS SECTION */}
       <ProjectsSection />
 
+      {/* 5.5. FACULTY DIRECTORY */}
+      <FacultySection />
+
       {/* 6. FAQ SECTION */}
       <FaqSection />
 
       {/* FOOTER */}
-      <footer id="contact" className="bg-[#070f1a] border-t border-[#D7E2EA]/10 py-12 px-6 md:px-10 text-center">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <span className="w-3 h-3 rounded-full bg-[#B600A8] animate-pulse"></span>
-            <span className="font-bold text-lg text-white uppercase tracking-wider">Shalom Tech</span>
-            <span className="text-sm text-[#D7E2EA]/60">-- The most awaited tech event</span>
-          </div>
-
-          <p className="text-xs sm:text-sm text-[#D7E2EA]/60 uppercase tracking-widest">
-            © {new Date().getFullYear()} Shalom Tech. All rights reserved.
-          </p>
-
-          <div className="flex items-center gap-6 text-sm uppercase tracking-wider">
-            <a href="#about" className="hover:text-[#BBCCD7] transition-colors">About</a>
-            <a href="#events" className="hover:text-[#BBCCD7] transition-colors">Events</a>
-            <a href="#register" className="hover:text-[#BBCCD7] transition-colors">Register</a>
-            <button onClick={handleContactClick} className="hover:text-[#BBCCD7] transition-colors cursor-pointer">Contact</button>
-          </div>
-        </div>
-      </footer>
+      <FooterSection />
 
       {/* CONTACT MODAL */}
       {isContactOpen && (

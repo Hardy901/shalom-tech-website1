@@ -1,23 +1,22 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export const ManifestoSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Create a tall scrolling container to drive the animation
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end']
   });
 
-  // Add physics spring to the scroll progress so it never stutters
-  const smoothScroll = useSpring(scrollYProgress, { stiffness: 80, damping: 20 });
+  // Lenis already handles smooth scroll, no need for useSpring
+  const smoothScroll = scrollYProgress;
 
   const text = "THE FUTURE OF TECHNOLOGY STARTS HERE. INNOVATE. BUILD. CONQUER.";
   const words = text.split(" ");
 
   return (
-    <section ref={containerRef} className="relative h-[250vh] bg-[#070f1a]">
+    <section ref={containerRef} className="relative h-[250vh] bg-transparent">
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center px-6 sm:px-10 overflow-hidden">
         
         {/* Deep ambient background pulse */}

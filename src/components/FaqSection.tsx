@@ -6,7 +6,7 @@ import { FadeIn } from './FadeIn';
 const faqs = [
   {
     question: "Who can participate?",
-    answer: "Students from classes III to XII can participate. Please check the specific eligibility criteria for each individual event (e.g., Runway to the Future is for III-IV, while Vision Makers is for IX-XII)."
+    answer: "Students from classes VIII to XII can participate. Please check the specific eligibility criteria for each individual event (e.g., Frame Forge is for VIII-IX, while Vision Makers is for IX-XII)."
   },
   {
     question: "Is there an entry fee?",
@@ -34,7 +34,7 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-24 sm:py-32 px-6 md:px-10 bg-[#070f1a] relative border-t border-[#D7E2EA]/5">
+    <section id="faq" className="py-24 sm:py-32 px-6 md:px-10 bg-transparent relative border-t border-[#D7E2EA]/5">
       {/* Background glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#B600A8]/5 blur-[120px] rounded-[100%] pointer-events-none -z-10" />
 
@@ -53,7 +53,7 @@ export const FaqSection: React.FC = () => {
             return (
               <FadeIn key={index} delay={index * 0.1}>
                 <div 
-                  className={`border border-[#D7E2EA]/10 rounded-2xl overflow-hidden transition-colors duration-300 ${isOpen ? 'bg-[#0a1526]' : 'bg-[#070f1a] hover:bg-[#0a1526]'}`}
+                  className={`border border-[#D7E2EA]/10 rounded-2xl overflow-hidden transition-colors duration-300 ${isOpen ? 'bg-[#0a1526]' : 'bg-transparent hover:bg-[#0a1526]'}`}
                 >
                   <button
                     onClick={() => toggleAccordion(index)}

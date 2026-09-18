@@ -25,33 +25,23 @@ const registrationEvents: RegCardData[] = [
   },
   {
     number: '02',
-    name: 'Runway to the Future',
-    subtitle: 'Fashion Show',
-    meta: 'Classes: III-IV • 1 Student • Offline',
+    name: 'Frame Forge',
+    subtitle: '3D Poster Composition',
+    meta: 'Classes: VIII-IX   2 Students   Offline',
     description:
-      'Walk the ramp and present attire, accessories, and props that creatively reflect and connect to the technology theme. Show off your futuristic style and imagination—no replicating existing characters allowed!',
-    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSfPGPwwR8a7xCD_8YnxdVNWxxViBeFQlSsGMbdeOL-AWV8m8A%2Fviewform',
-    registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfPGPwwR8a7xCD_8YnxdVNWxxViBeFQlSsGMbdeOL-AWV8m8A/viewform',
+      'Create a 3D poster composition using 10-15 images provided to you on the spot, creatively reimagining them to design a unique and original poster.',
+    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLScyB-YJbFwO-b-U3YmB7Hw25oH3n14c_O0k_kZ555b206R-zQ%2Fviewform',
+    registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLScyB-YJbFwO-b-U3YmB7Hw25oH3n14c_O0k_kZ555b206R-zQ/viewform',
   },
   {
     number: '03',
-    name: 'Frame Forge',
-    subtitle: '3D Image Composition',
-    meta: 'Classes: VIII-IX • 2 Students • Offline',
-    description:
-      'Create an original 3D composition and poster by creatively reimagining 10-15 images given to you on the spot. Test your rapid design skills and 3D modeling expertise under pressure!',
-    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSfnGfM2w1ONV53V_dOzccZxe6V6dUIdvQfPmlcM4kB_w4LUKA%2Fviewform',
-    registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfnGfM2w1ONV53V_dOzccZxe6V6dUIdvQfPmlcM4kB_w4LUKA/viewform',
-  },
-  {
-    number: '04',
     name: 'Web Weavers',
     subtitle: 'Website Design',
-    meta: 'Classes: X-XII • 2 Students • Offline',
+    meta: 'Classes: IX-XII   2 Students   Offline',
     description:
-      'Design and develop a responsive, original, and user-friendly website on a topic given on the spot. AI tools are permitted to a certain extent. Build the web of tomorrow, today!',
-    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSfpHdsDtQepTRxvG3qYZLOjo34BaBnKrdFMKm0epsFWB-XqvA%2Fviewform',
-    registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfpHdsDtQepTRxvG3qYZLOjo34BaBnKrdFMKm0epsFWB-XqvA/viewform',
+      'Design a responsive website using HTML, CSS, and JavaScript on the topics of Quick Commerce or Technology & Innovation. Participants must submit their source code prior to the event.',
+    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSdM3Q9gY4c50q-V1z5rR_J6V5nK35U7g_V83_F4oJ8E_UqF_g%2Fviewform',
+    registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdM3Q9gY4c50q-V1z5rR_J6V5nK35U7g_V83_F4oJ8E_UqF_g/viewform',
   },
 ];
 
@@ -63,13 +53,15 @@ interface CardProps {
 const RegistrationCard: React.FC<CardProps> = ({ event, index }) => {
   return (
     <div
-      className="h-[85vh] sticky flex items-center justify-center"
-      style={{ top: `${80 + index * 24}px` }}
+      className="w-full sticky mb-12 sm:mb-20"
+      style={{ top: `calc(15vh + ${index * 30}px)`, transform: 'translateZ(0)' }}
     >
       <motion.div
-        whileHover={{ scale: 1.01, rotateY: 1, rotateX: 1, transition: { duration: 0.3 } }}
-        className="w-full max-w-6xl rounded-[28px] sm:rounded-[34px] md:rounded-[40px] border border-[#D7E2EA]/25 bg-[#070f1a] overflow-hidden shadow-2xl flex flex-col"
+        whileHover={{ y: -8, transition: { duration: 0.4, ease: "easeOut" } }}
+        className="w-full max-w-6xl mx-auto rounded-[30px] sm:rounded-[40px] border border-[#D7E2EA]/10 bg-[#0a1526] overflow-hidden shadow-2xl flex flex-col relative"
       >
+        {/* Glow overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#00E5FF]/5 via-transparent to-[#B600A8]/5 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
         {/* ── Top Row: Number | Category + Name | Register Button ── */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-5 sm:px-8 md:px-10 pt-6 sm:pt-8 md:pt-10 pb-5 sm:pb-6">
           {/* Left: Number + Category + Name */}
@@ -170,7 +162,7 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="register"
-      className="relative z-10 bg-[#070f1a] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 px-4 sm:px-6 md:px-10 pt-20 pb-40"
+      className="relative z-10 bg-[#070f1a] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 px-4 sm:px-6 md:px-10 pt-40 md:pt-56 pb-40"
     >
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
