@@ -23,7 +23,7 @@ const eventsData: EventItem[] = [
     number: '02',
     name: 'Frame Forge',
     subtitle: '3D Poster Composition',
-    meta: 'Classes: VIII-IX   2 Students   Offline',
+    meta: 'Classes: VIII-IX • 2 Students • Offline',
     description:
       'Create a 3D poster composition using 10-15 images provided to you on the spot, creatively reimagining them to design a unique and original poster.',
   },
@@ -31,7 +31,7 @@ const eventsData: EventItem[] = [
     number: '03',
     name: 'Web Weavers',
     subtitle: 'Website Design',
-    meta: 'Classes: IX-XII   2 Students   Offline',
+    meta: 'Classes: IX-XII • 2 Students • Offline',
     description:
       'Design a responsive website using HTML, CSS, and JavaScript on the topics of Quick Commerce or Technology & Innovation. Participants must submit their source code prior to the event.',
   },

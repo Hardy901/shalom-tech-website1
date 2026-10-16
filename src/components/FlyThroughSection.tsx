@@ -1,8 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 export const FlyThroughSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // Create a massive scrolling area (4 full screens)
   const { scrollYProgress } = useScroll({
@@ -10,21 +18,20 @@ export const FlyThroughSection: React.FC = () => {
     offset: ['start start', 'end end']
   });
 
-  // Lenis handles the smooth scroll globally, so we no longer need useSpring here!
   const smoothProgress = scrollYProgress;
 
-  // Array to generate geometric rings for the tunnel (Reduced for GPU performance)
-  const totalRings = 12;
+  // Reduce rings for massive GPU performance boost (especially on mobile)
+  const totalRings = isMobile ? 6 : 8;
   const rings = Array.from({ length: totalRings }).map((_, i) => i);
 
   // Array for milestone texts that we fly through
   const milestones = [
     { text: "INNOVATE", zOffset: 1, xOffset: "-50%", yOffset: "-50%" },
-    { text: "COMPETE", zOffset: 4, xOffset: "-50%", yOffset: "-50%" },
-    // Shift slightly so the camera perfectly threads the needle through the hole in 'Q'
-    { text: "CONQUER", zOffset: 7, xOffset: "-50.5%", yOffset: "-47%" },
-    // Shift the text to the right so the camera passes directly through the 'M' instead of the space
-    { text: "SHALOM TECH", zOffset: 10, xOffset: "-42%", yOffset: "-50%" }
+    { text: "COMPETE", zOffset: 3.5, xOffset: "-50%", yOffset: "-50%" },
+    // Shift carefully so the camera perfectly threads the needle through the absolute center of the hole in 'Q'
+    { text: "CONQUER", zOffset: 6, xOffset: "-48.5%", yOffset: "-53%" },
+    // Keep it perfectly centered. The camera will fly through the space between M and T.
+    { text: "SHALOM TECH", zOffset: 8.5, xOffset: "-50%", yOffset: "-50%" }
   ];
 
   return (
@@ -35,30 +42,30 @@ export const FlyThroughSection: React.FC = () => {
         style={{ perspective: '800px', transformStyle: 'preserve-3d' }}
       >
         
-        {/* Background glow to simulate deep space / tunnel end */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[#B600A8]/10 rounded-full blur-[80px] -z-20" />
+        {/* Background glow using radial-gradient (Zero blur = 100x faster on mobile GPUs) */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-20">
+          <div className="w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(182,0,168,0.15)_0%,_transparent_60%)] rounded-full" />
+        </div>
 
-        {/* Master 3D Container - Perfectly straight for realism */}
+        {/* Master 3D Container */}
         <motion.div 
           className="absolute inset-0 flex items-center justify-center pointer-events-none"
           style={{ transformStyle: 'preserve-3d' }}
         >
           {/* Generate the 3D Tunnel Rings */}
           {rings.map((index) => {
-            const baseZ = -(index * 500); 
+            const baseZ = -(index * 600); 
             
-            // Increase travel distance so elements fly way past the camera (perspective is 800px)
-            const distanceToTravel = totalRings * 500 + 2000;
+            const distanceToTravel = totalRings * 600 + 2000;
             const z = useTransform(smoothProgress, [0, 1], [baseZ, baseZ + distanceToTravel]);
             
-            // Keep opacity 1 even as it passes the camera (z=800), let CSS handle the clipping!
             const opacity = useTransform(z, [-2000, -500, 700, 1000], [0, 1, 1, 0]);
             const rotateZ = useTransform(smoothProgress, [0, 1], [0, 180 + index * 10]);
 
             return (
               <motion.div
                 key={`ring-${index}`}
-                className="absolute top-1/2 left-1/2 rounded-full border-2 border-[#00E5FF]/40 pointer-events-none"
+                className="absolute top-1/2 left-1/2 rounded-full border-[1px] border-[#00E5FF]/30 pointer-events-none shadow-[0_0_30px_rgba(0,229,255,0.1)]"
                 style={{
                   width: '65vw',
                   height: '65vw',
@@ -72,19 +79,18 @@ export const FlyThroughSection: React.FC = () => {
                   willChange: 'transform, opacity'
                 }}
               >
-                {/* Inner dashed ring */}
-                <div className="absolute inset-4 rounded-full border-2 border-[#00E5FF]/60 border-dashed opacity-80" />
+                {/* Inner solid ring instead of dashed for iOS WebKit performance */}
+                <div className="absolute inset-6 sm:inset-8 rounded-full border-[1px] border-[#00E5FF]/40 opacity-80" />
               </motion.div>
             );
           })}
 
           {/* Generate the 3D Flying Text Milestones */}
           {milestones.map((milestone, index) => {
-            const baseZ = -(milestone.zOffset * 500);
-            const distanceToTravel = totalRings * 500 + 2000;
+            const baseZ = -(milestone.zOffset * 600);
+            const distanceToTravel = totalRings * 600 + 2000;
             const z = useTransform(smoothProgress, [0, 1], [baseZ, baseZ + distanceToTravel]);
             
-            // Keep text fully visible until it physically passes behind the user's head (z > 800)
             const opacity = useTransform(z, [-1500, -200, 750, 900], [0, 1, 1, 0]);
 
             return (
@@ -99,7 +105,11 @@ export const FlyThroughSection: React.FC = () => {
                   willChange: 'transform, opacity'
                 }}
               >
-                <h2 className="font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-[#00E5FF] uppercase tracking-[0.2em] md:tracking-[0.5em] text-[12vw] sm:text-[8vw] leading-none">
+                {/* Restored bg-clip-text gradient */}
+                <h2 
+                  className="font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-[#00E5FF] uppercase tracking-[0.2em] md:tracking-[0.5em] text-[12vw] sm:text-[8vw] leading-none drop-shadow-[0_0_15px_rgba(0,229,255,0.2)]"
+                  style={{ WebkitFontSmoothing: 'antialiased' }}
+                >
                   {milestone.text}
                 </h2>
               </motion.div>
@@ -107,7 +117,7 @@ export const FlyThroughSection: React.FC = () => {
           })}
         </motion.div>
         
-        {/* Scroll To Enter Indicator (Fades out when scrolling starts) */}
+        {/* Scroll To Enter Indicator */}
         <motion.div 
           className="absolute bottom-20 left-1/2 flex flex-col items-center justify-center pointer-events-none"
           style={{ 

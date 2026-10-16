@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FadeIn } from './FadeIn';
+import { ChevronRight } from 'lucide-react';
 
 interface RegCardData {
   number: string;
@@ -27,21 +28,21 @@ const registrationEvents: RegCardData[] = [
     number: '02',
     name: 'Frame Forge',
     subtitle: '3D Poster Composition',
-    meta: 'Classes: VIII-IX   2 Students   Offline',
+    meta: 'Classes: VIII-IX • 2 Students • Offline',
     description:
       'Create a 3D poster composition using 10-15 images provided to you on the spot, creatively reimagining them to design a unique and original poster.',
-    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLScyB-YJbFwO-b-U3YmB7Hw25oH3n14c_O0k_kZ555b206R-zQ%2Fviewform',
-    registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLScyB-YJbFwO-b-U3YmB7Hw25oH3n14c_O0k_kZ555b206R-zQ/viewform',
+    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSfnGfM2w1ONV53V_dOzccZxe6V6dUIdvQfPmlcM4kB_w4LUKA%2Fviewform',
+    registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfnGfM2w1ONV53V_dOzccZxe6V6dUIdvQfPmlcM4kB_w4LUKA/viewform',
   },
   {
     number: '03',
     name: 'Web Weavers',
     subtitle: 'Website Design',
-    meta: 'Classes: IX-XII   2 Students   Offline',
+    meta: 'Classes: IX-XII • 2 Students • Offline',
     description:
       'Design a responsive website using HTML, CSS, and JavaScript on the topics of Quick Commerce or Technology & Innovation. Participants must submit their source code prior to the event.',
-    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSdM3Q9gY4c50q-V1z5rR_J6V5nK35U7g_V83_F4oJ8E_UqF_g%2Fviewform',
-    registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdM3Q9gY4c50q-V1z5rR_J6V5nK35U7g_V83_F4oJ8E_UqF_g/viewform',
+    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSfpHdsDtQepTRxvG3qYZLOjo34BaBnKrdFMKm0epsFWB-XqvA%2Fviewform',
+    registerLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfpHdsDtQepTRxvG3qYZLOjo34BaBnKrdFMKm0epsFWB-XqvA/viewform',
   },
 ];
 
@@ -97,9 +98,26 @@ const RegistrationCard: React.FC<CardProps> = ({ event, index }) => {
               href={event.registerLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center justify-center px-6 py-3 font-bold text-white transition-all duration-200 bg-[#B600A8] rounded-full hover:bg-cyan-400 hover:text-[#070f1a] hover:scale-105"
+              className="group relative inline-flex p-[2px] items-center justify-center rounded-full overflow-hidden transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.2)]"
             >
-              <span className="text-sm tracking-wider uppercase">Register Now</span>
+              {/* Spinning Chrome Border (White and Blue) */}
+              <div className="absolute w-[200%] h-[1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0%,transparent_35%,#00E5FF_40%,#FFFFFF_45%,#0055FF_48%,transparent_50%,transparent_85%,#00E5FF_90%,#FFFFFF_95%,#0055FF_98%,transparent_100%)] opacity-100" />
+              
+              {/* Inner Solid Pill */}
+              <div className="relative flex items-center justify-between gap-4 pl-2 pr-8 py-2 bg-[#070f1a] rounded-full w-full h-full shadow-[inset_0_0_15px_rgba(0,0,0,0.8)]">
+                
+                {/* Logo Circle */}
+                <div className="relative flex items-center justify-center w-10 h-10 rounded-full overflow-hidden p-[1.5px] shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+                   {/* Spinning Chrome Border for Icon */}
+                   <div className="absolute w-[200%] h-[200%] animate-[spin_3s_linear_infinite_reverse] bg-[conic-gradient(from_0deg,transparent_0%,transparent_35%,#00E5FF_40%,#FFFFFF_45%,#0055FF_48%,transparent_50%,transparent_85%,#00E5FF_90%,#FFFFFF_95%,#0055FF_98%,transparent_100%)] opacity-100" />
+                   
+                   <div className="relative z-10 w-full h-full bg-[#070f1a] rounded-full flex items-center justify-center transition-colors group-hover:bg-white/10">
+                     <ChevronRight className="w-5 h-5 text-white transform group-hover:translate-x-0.5 transition-transform" />
+                   </div>
+                </div>
+
+                <span className="font-['Bebas_Neue'] text-2xl tracking-[0.1em] text-white mt-1 drop-shadow-md">Register Now</span>
+              </div>
             </a>
           </div>
         </div>
@@ -129,7 +147,7 @@ const RegistrationCard: React.FC<CardProps> = ({ event, index }) => {
 
             <div className="mt-4 p-4 rounded-xl bg-gradient-to-r from-[#B600A8]/10 to-transparent border-l-4 border-[#B600A8]">
               <p className="text-sm text-white/90 font-medium">
-                Scan the QR code on the right with your smartphone to instantly access the registration portal.
+                Scan the QR code on the right or press the Register Now button to instantly access the registration portal.
               </p>
             </div>
           </div>

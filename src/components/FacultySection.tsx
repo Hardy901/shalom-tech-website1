@@ -8,10 +8,6 @@ const directory = [
     id: "01",
     title: "Vision Makers",
     subtitle: "Hackathon",
-    teachers: [
-      { name: "Ms. Neha Kapoor", contact: "78386 63919" },
-      { name: "Ms. Sarika Aneja", contact: "98183 04589" }
-    ],
     students: [
       { name: "Tanish Saravana", role: "Student In-Charge", contact: "87001 31726" },
       { name: "Ean Kotadia", role: "Student In-Charge", contact: "70423 85888" }
@@ -21,10 +17,6 @@ const directory = [
     id: "02",
     title: "Frame Forge",
     subtitle: "3D Poster Composition",
-    teachers: [
-      { name: "Ms. Shruti Barawal", contact: "87000 13007" },
-      { name: "Ms. Swati Srivastava", contact: "99104 84108" }
-    ],
     students: [
       { name: "Ridhaan Aneja", role: "Student In-Charge", contact: "88102 19277" },
       { name: "Prithish Sharma", role: "Student In-Charge", contact: "74281 36533" }
@@ -34,10 +26,6 @@ const directory = [
     id: "03",
     title: "Web Weavers",
     subtitle: "Website Design",
-    teachers: [
-      { name: "Ms. Deepali Yadav", contact: "92890 74656" },
-      { name: "Ms. Neena Chauhan", contact: "98911 66750" }
-    ],
     students: [
       { name: "Hardik Batra", role: "Student In-Charge", contact: "93156 71544" },
       { name: "Nimardeep Singh", role: "Student In-Charge", contact: "93191 13083" }
@@ -45,18 +33,15 @@ const directory = [
   }
 ];
 
-const ElegantCard = ({ title, name, avatar, delay, objectPosition = "object-center" }: { title: string, name: string, avatar: string, delay: number, objectPosition?: string }) => {
+const ElegantCard = ({ title, name, delay }: { title: string, name: string, delay: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      className="w-full bg-[#060A1F]/80 backdrop-blur-md border border-[#c19b6c]/20 rounded-xl p-8 flex flex-col items-center justify-center text-center shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:border-[#c19b6c]/40 transition-colors duration-500 min-h-[250px] sm:min-h-[350px]"
+      className="w-full bg-[#060A1F]/80 backdrop-blur-md border border-[#c19b6c]/20 rounded-xl p-8 sm:p-10 flex flex-col items-center justify-center text-center shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:border-[#c19b6c]/40 transition-colors duration-500 min-h-[170px] sm:min-h-[200px]"
     >
-      <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-full border-[3px] border-[#c19b6c] overflow-hidden mb-6 shadow-[0_0_20px_rgba(193,155,108,0.3)] bg-[#0a1526]">
-        <img src={avatar} alt={name} className={`w-full h-full object-cover ${objectPosition}`} />
-      </div>
       <h3 className="font-serif text-3xl sm:text-4xl text-white mb-3 tracking-wide">{name}</h3>
       <p className="text-[#c19b6c] text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em] font-sans">
         {title}
@@ -109,9 +94,9 @@ export const FacultySection: React.FC = () => {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 w-full">
-              <ElegantCard title="President" name="Hardik" avatar="/hardik.jpg" delay={0.1} objectPosition="object-top" />
-              <ElegantCard title="Co-President" name="Tanish" avatar="/tanish.png" delay={0.2} />
-              <ElegantCard title="Managing Director" name="Bhawna" avatar="https://i.pravatar.cc/150?u=bhawna" delay={0.3} />
+              <ElegantCard title="President" name="Hardik" delay={0.1} />
+              <ElegantCard title="Co-President" name="Tanish" delay={0.2} />
+              <ElegantCard title="Managing Director" name="Bhawna" delay={0.3} />
             </div>
           </div>
         </FadeIn>
@@ -146,7 +131,7 @@ export const FacultySection: React.FC = () => {
           </div>
 
           {/* Right Side: Details Panel */}
-          <div className="w-full lg:w-2/3 min-h-[500px] lg:min-h-[550px]">
+          <div className="w-full lg:w-2/3 min-h-[360px] sm:min-h-[400px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -154,10 +139,10 @@ export const FacultySection: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="w-full min-h-[500px] lg:min-h-[550px] p-8 sm:p-12 bg-[#060A1F]/80 backdrop-blur-md border border-[#c19b6c]/20 rounded-xl"
+                className="w-full min-h-[360px] sm:min-h-[400px] p-8 sm:p-12 bg-[#060A1F]/80 backdrop-blur-md border border-[#c19b6c]/20 rounded-xl flex flex-col justify-between"
               >
                 
-                <div className="mb-12 text-center sm:text-left">
+                <div className="mb-10 text-center sm:text-left">
                   <h4 className="text-white font-serif text-3xl sm:text-5xl tracking-wide mb-3">
                     {directory[activeIndex].title}
                   </h4>
@@ -166,45 +151,24 @@ export const FacultySection: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16">
-                  
-                  {/* Teachers */}
-                  <div className="flex flex-col gap-6">
-                    <h5 className="text-white/40 font-sans text-[10px] font-bold uppercase tracking-widest border-b border-white/10 pb-4 text-center sm:text-left">
-                      Teacher Incharges
-                    </h5>
-                    <div className="flex flex-col gap-6">
-                      {directory[activeIndex].teachers.map((teacher, idx) => (
-                        <div key={idx} className="flex flex-col gap-1 text-center sm:text-left">
-                          <span className="text-white font-serif text-2xl tracking-wide">{teacher.name}</span>
-                          <span className="text-white/40 text-sm font-sans">
-                            {teacher.contact}
+                {/* Students */}
+                <div className="flex flex-col gap-6">
+                  <h5 className="text-white/40 font-sans text-[10px] font-bold uppercase tracking-widest border-b border-white/10 pb-4 text-center sm:text-left">
+                    Student Incharges
+                  </h5>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12">
+                    {directory[activeIndex].students.map((student, idx) => (
+                      <div key={idx} className="flex flex-col gap-1 text-center sm:text-left">
+                        <span className="text-white font-serif text-2xl tracking-wide">{student.name}</span>
+                        <span className="text-white/40 text-sm font-sans uppercase tracking-widest">{student.role}</span>
+                        {student.contact && (
+                          <span className="text-[#c19b6c] text-sm font-sans font-medium mt-1">
+                            {student.contact}
                           </span>
-                        </div>
-                      ))}
-                    </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
-
-                  {/* Students */}
-                  <div className="flex flex-col gap-6">
-                    <h5 className="text-white/40 font-sans text-[10px] font-bold uppercase tracking-widest border-b border-white/10 pb-4 text-center sm:text-left">
-                      Student Incharges
-                    </h5>
-                    <div className="flex flex-col gap-6">
-                      {directory[activeIndex].students.map((student, idx) => (
-                        <div key={idx} className="flex flex-col gap-1 text-center sm:text-left">
-                          <span className="text-white font-serif text-2xl tracking-wide">{student.name}</span>
-                          <span className="text-white/40 text-sm font-sans uppercase tracking-widest">{student.role}</span>
-                          {student.contact && (
-                            <span className="text-white/40 text-sm font-sans">
-                              {student.contact}
-                            </span>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
                 </div>
 
               </motion.div>

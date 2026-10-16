@@ -38,10 +38,8 @@ export const FooterSection: React.FC = () => {
             </div>
             <div className="flex flex-col gap-5">
               <h4 className="text-[#B600A8]/60 font-mono text-[10px] font-bold uppercase tracking-[0.2em] mb-2">Connect</h4>
-              <a href="#" className="text-xl font-black tracking-tight text-white/70 hover:text-white transition-colors duration-300">Instagram</a>
-              <a href="#" className="text-xl font-black tracking-tight text-white/70 hover:text-white transition-colors duration-300">Twitter X</a>
-              <a href="#" className="text-xl font-black tracking-tight text-white/70 hover:text-white transition-colors duration-300">LinkedIn</a>
-              <a href="#contact" className="text-xl font-black tracking-tight text-white/70 hover:text-white transition-colors duration-300">Contact Us</a>
+              <a href="https://www.instagram.com/shalomtech_shis/" target="_blank" rel="noopener noreferrer" className="text-xl font-black tracking-tight text-white/70 hover:text-white transition-colors duration-300">Instagram</a>
+              <a href="#faculty" className="text-xl font-black tracking-tight text-white/70 hover:text-white transition-colors duration-300">Contact Us</a>
             </div>
           </div>
         </div>
